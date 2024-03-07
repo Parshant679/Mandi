@@ -1,14 +1,17 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const app = new express();
-const routes = require("./Routes/useRouter");
-const connectDB = require("./db/dboConnection");
 require("dotenv").config({ path: "../server/.env" });
-const PORT = process.env.PORT || 3000;
-
-app.use(routes);
+const app = new express();
+const connectDB = require("./db/dboConnection");
+const PORT = process.env.PORT;
 app.use(cookieParser);
 app.use(express.json());
+app.get("/", (req, res) => {
+  res.send("welcome to server ... ");
+});
+app.use("/user", require("./Routes/useRouter"));
+app.use("/api", require("./Routes/categoryRoutes"));
+app.use("/api", require("./Routes/productRouter"));
 app.listen(PORT, (req, res) => {
   console.log("server listening at 3000");
 });
