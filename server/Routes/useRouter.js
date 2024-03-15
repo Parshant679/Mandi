@@ -1,9 +1,11 @@
 const userCtrl = require("../controller/userCtrl");
 const router = require("express").Router();
-router.get("/", (req, res) => {
-  res.send("welcome to server ... ");
-});
+const auth = require("../middleware/auth");
+const adminAuth = require("../middleware/admin");
 router.post("/login", userCtrl.login);
+router.get("/logout", userCtrl.logout);
 router.post("/register", userCtrl.register);
-router.post("/refreshtoken", userCtrl.refreshtoken);
+router.get("/refresh_token", userCtrl.refreshtoken);
+router.get("/userInfo", auth, userCtrl.getUser);
+router.get("/admin", adminAuth, userCtrl.adminUser);
 module.exports = router;

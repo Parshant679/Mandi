@@ -1,16 +1,25 @@
 const express = require("express");
-const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const app = new express();
-const routes = require("./Routes/useRouter");
-const connectDB = require("./db/dboConnection");
 require("dotenv").config({ path: "../server/.env" });
-const PORT = process.env.PORT || 3000;
-
-app.use(routes);
-app.use(cookieParser);
+const cookieParser = require("cookie-parser");
+const connectDB = require("./db/dboConnection");
+const PORT = process.env.PORT;
+// const corsOptions = {
+//   origin: "http://localhost:5173",
+// };
 app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
+app.get("/", (req, res) => {
+  res.json({ msg: "This is Example" });
+});
+
+app.use("/user", require("./Routes/useRouter"));
+app.use("/api", require("./Routes/categoryRoutes"));
+app.use("/api", require("./Routes/productRouter"));
 app.listen(PORT, (req, res) => {
-  console.log("server listening at 3000");
+  console.log("server listening at", PORT);
 });
 
 connectDB();
