@@ -28,25 +28,32 @@ const userCtrl = {
     const accessToken = createAccessToken({ id: newUser._id });
     const refreshtoken = createRefreshToken({ id: newUser._id });
 
+    console.log(accessToken);
+    console.log(refreshtoken);
+
     res.cookie("refreshtoken", refreshtoken, {
       httpOnly: true,
       path: "/user/refresh_token",
     });
 
-    res.json(accessToken);
+    res.json({ accessToken });
   },
   refreshtoken: async (req, res) => {
-    const ref_token = req.cookies.refreshtoken;
-    if (!ref_token)
-      return res.status(400).json({ msg: "please Login or Register" });
+    try {
+      const rf_token = req.cookies.refreshtoken;
 
-    jwt.verify(ref_token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-      if (err) {
-        res.status(400).json({ msg: "please Login or Register" });
-      }
-      const accessToken = createAccessToken({ id: user.id });
-      res.json({ user, accessToken });
-    });
+      if (!rf_token)
+        return res.status(400).json({ msg: "Please Login or Registers" });
+
+      jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+        if (err)
+          return res.status(400).json({ msg: "Please Login or Register" });
+        const accesstoken = createAccessToken({ id: user.id });
+        res.json({ accesstoken });
+      });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
   },
   login: async (req, res) => {
     try {
@@ -66,7 +73,7 @@ const userCtrl = {
         httpOnly: true,
         path: "/user/refresh_token",
       });
-      res.json(accessToken);
+      res.json({ accessToken });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
