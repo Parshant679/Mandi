@@ -2,9 +2,9 @@
 Ecommerce Website
 
 # Tech stack 
-FrontEnd : HTML ,CSS , Javascript ,React JS ,Redux tool kit .
-BackEnd : Node js ,Express js , Mongo DB (Atlas).
-Authentication : JWT Tokens , (Oauth2.0) in Future.
+     FrontEnd : HTML ,CSS , Javascript ,React JS ,Redux tool kit .
+     BackEnd : Node js ,Express js , Mongo DB (Atlas).
+     Authentication : JWT Tokens , (Oauth2.0) in Future.
 
 # Data Base Schemas :
 ## USER SCHEMA : {
@@ -82,6 +82,6 @@ Authentication : JWT Tokens , (Oauth2.0) in Future.
             }
             
 # Future Scope 
-  Product review system .
-  Oauth Implementation .
-  Payment Gate way integration.
+       Product review system .
+       Oauth Implementation .
+       Payment Gate way integration.
