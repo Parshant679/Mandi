@@ -7,7 +7,8 @@ Ecommerce Website
      Authentication : JWT Tokens , (Oauth2.0) in Future.
 
 # Data Base Schemas :
-## USER SCHEMA : {
+## USER SCHEMA 
+    {
      name: {
            type: String,
             required: true,
@@ -31,7 +32,8 @@ Ecommerce Website
      }
     
      
-## PRODUCT SCHECMA :{
+## PRODUCT SCHECMA :
+     {
          product_id: {
               type: String,
               unique: true,
@@ -72,7 +74,8 @@ Ecommerce Website
             },
     }
     
-## CATEGORY SCHEMA :{
+## CATEGORY SCHEMA :
+          {
             name: {
                 type: String,
                 rquired: true,
