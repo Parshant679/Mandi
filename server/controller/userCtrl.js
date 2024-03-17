@@ -28,11 +28,8 @@ const userCtrl = {
     const accessToken = createAccessToken({ id: newUser._id });
     const refreshtoken = createRefreshToken({ id: newUser._id });
 
-    console.log(accessToken);
-    console.log(refreshtoken);
-
     res.cookie("refreshtoken", refreshtoken, {
-      httpOnly: true,
+      httpOnly: false,
       path: "/user/refresh_token",
     });
 
@@ -70,9 +67,10 @@ const userCtrl = {
       const refreshtoken = createRefreshToken({ id: user._id });
 
       res.cookie("refreshtoken", refreshtoken, {
-        httpOnly: true,
+        httpOnly: false,
         path: "/user/refresh_token",
       });
+      console.log("logged in");
       res.json({ accessToken });
     } catch (err) {
       return res.status(500).json({ msg: err.message });

@@ -4,19 +4,17 @@ header{
     overflow: hidden;
     display: flex;
     flex-wrap:wrap;
-    justify-content: space-around;
+    justify-content:space-around ;
     align-items: center;
     border-bottom: 1px solid #ddd;
 }
 
 header.logo{
     flex:1;
-
 }
 
 header a{
-    text-transform: uppercase;
-    color: black;
+    font-weight: bold;
 }
 header ul li{
     display: inline-block;
