@@ -9,9 +9,7 @@ export const DataProvider = ({ children }) => {
   const refreshToken = async () => {
     const res = await axios.get(
       import.meta.env.VITE_API_BASE_URL + "/user/refresh_token",
-      {
-        headers: { Authorization: token },
-      }
+      { withCredentials: true }
     );
 
     setToken(res.data.accesstoken);
@@ -19,7 +17,10 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
-    if (firstLogin) refreshToken();
+    if (firstLogin) {
+      console.log("before refresh token", token);
+      refreshToken();
+    }
   }, []);
 
   const state = {

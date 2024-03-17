@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MdOutlineMenu } from "react-icons/md";
 import { MdClose } from "react-icons/md";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { GlobalState } from "../../GlobalState";
+import SearchBar from "../headers/Searchbar";
+import LinkButtons from "../utils/linkButtons";
 import axios from "axios";
 
 const Header = () => {
@@ -37,7 +39,7 @@ const Header = () => {
     return (
       <>
         <li>
-          <Link to="/history">History</Link>
+          <LinkButtons path="/history" title="History" />
         </li>
         <li>
           <Link to="/" onClick={logoutUser}>
@@ -56,22 +58,38 @@ const Header = () => {
 
       <div className="logo">
         <h1>
-          <Link to="/">{isAdmin ? "Admin" : "30DC Shop"}</Link>
+          <Link to="/">{isAdmin ? "Admin" : "MANDI"}</Link>
         </h1>
       </div>
-
       <ul>
         <li>
           <Link to="/">{isAdmin ? "Products" : "Shop"}</Link>
         </li>
-
+        <li>
+          <SearchBar />
+        </li>
         {isAdmin && adminRouter()}
         {isLogged ? (
           loggedRouter()
         ) : (
-          <li>
-            <Link to="/login">Login or Register</Link>
-          </li>
+          <>
+            <li>
+              <LinkButtons
+                path="/login"
+                title="Login"
+                reqClass="text-cyan-500 "
+              />
+            </li>
+            <li>
+              <div className="px-2 py-2 rounded-xl bg-sky-700">
+                <LinkButtons
+                  path="/register"
+                  title="Register"
+                  reqClass="text-stone-50"
+                />
+              </div>
+            </li>
+          </>
         )}
 
         <li>

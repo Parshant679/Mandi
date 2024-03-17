@@ -5,11 +5,12 @@ require("dotenv").config({ path: "../server/.env" });
 const cookieParser = require("cookie-parser");
 const connectDB = require("./db/dboConnection");
 const PORT = process.env.PORT;
-// const corsOptions = {
-//   origin: "http://localhost:5173",
-// };
+const corsOptions = {
+  origin: "http://localhost:5173",
+  credentials: true,
+};
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.get("/", (req, res) => {
   res.json({ msg: "This is Example" });
