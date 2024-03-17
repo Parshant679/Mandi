@@ -7,7 +7,7 @@ const Register = () => {
   const [user, setUser] = useState({
     name: "",
     email: "",
-    phoneNo: null,
+    phoneNo: undefined,
     password: "",
   });
 

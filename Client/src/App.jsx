@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Header from "./components/headers/Header";
 import Pages from "./components/mainpages/Pages";
 import { DataProvider } from "./GlobalState";
@@ -9,7 +9,9 @@ function App() {
       <Router>
         <div className="App">
           <Header />
-          <Pages />
+          <Suspense fallback={<div>Loading..</div>}>
+            <Pages />
+          </Suspense>
         </div>
       </Router>
     </DataProvider>

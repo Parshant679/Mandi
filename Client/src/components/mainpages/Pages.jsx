@@ -1,18 +1,24 @@
-import React from "react";
-import Product from "./products/Product";
-import Login from "./login/Login";
-import Register from "./login/Register";
-import Cart from "./cart/cart";
-import DetailProduct from "./utils/DetailProducts/DetailProduct";
+import React, { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
+
+// Lazy Loading components
+const Login = lazy(() => import("./login/Login"));
+const Register = lazy(() => import("./login/Register"));
+const Product = lazy(() => import("./products/Product"));
+const DetailProduct = lazy(() =>
+  import("./utils/DetailProducts/DetailProduct")
+);
+const Cart = lazy(() => import("./cart/cart"));
+
 function Pages() {
   return (
     <Routes>
       <Route path="/" element={<Product />} />
-      <Route path="/cart" element={<Cart />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/details/:id" element={<DetailProduct />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/products" element={<Product />} />
+      <Route path="/details/:id" element={<DetailProduct />} />
+      <Route path="/cart" element={<Cart />} />
     </Routes>
   );
 }
